@@ -53,7 +53,9 @@
 !
       write(*,*)' Printing Matrix'
 !
-      ADD CODE HERE
+    
+      write(*,1000) matrix
+       
 !
 !
       return
