@@ -45,9 +45,6 @@
 
 !     Compute and print product of matrices
      
-!      matrixProduct = matmul(transpose(matrixInA),transpose(matrixInB)) 
-!      print *,reshape(matrixProduct,(3,3))
-      
       matrixProduct = 0
 
       do i = 1,3
@@ -62,13 +59,6 @@
 1000 format(3(2x,f5.1))
       write(*,*) 'Printing matrix product'
       write(*,1000) transpose(matrixProduct)
-
-!      write(*,*) 'Printing matrix product'
-!      do i = 1,3    
-!        write(*,1000) matrixProduct(i,1),matrixProduct(i,2), &
-!          matrixProduct(i,3)
-!       endDo 
-
 
   999 continue
       End Program prgm_01_03
@@ -92,9 +82,6 @@
 !
        
       write(*,1000) matrix
-!      do i = 1,Size(matrix,1)
-!       write(*,1000) matrix(:,i)
-!      endDo
        
 !
 !
