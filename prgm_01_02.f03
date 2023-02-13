@@ -6,7 +6,7 @@
 !
       implicit none
       integer,parameter::inFileUnitA=10,inFileUnitB=11
-      integer::errorFlag,i
+      integer::errorFlagA,errorFlagB,i
       real,dimension(3,3)::matrixInA,matrixInB
       character(len=128)::fileNameA,fileNameB
 !
@@ -21,10 +21,10 @@
 !     respective file.
 !
       open(unit=inFileUnitA,file=TRIM(fileNameA),status='old',  &
-        iostat=errorFlag)
+        iostat=errorFlagA)
       open(unit=inFileUnitB,file=TRIM(fileNameB),status='old', &
-        iostat=errorFlag)
-      if(errorFlag.ne.0) then
+        iostat=errorFlagB)
+      if(errorFlagA.ne.0 .OR. errorFlagB.ne.0) then
         write(*,*)' There was a problem opening the input files.'
         goto 999
       endIf
@@ -37,7 +37,8 @@
       close(inFileUnitA)
       close(inFileUnitB)
 !
-!     Call the subroutine PrintMatrix to print matrixInA.
+!     Call the subroutine PrintMatrix to print matrixInA and call again
+!     to print matrixInB.
 !
       call PrintMatrix3x3(matrixInA)
       call PrintMatrix3x3(matrixInB)
@@ -64,9 +65,6 @@
 !
        
       write(*,1000) matrix
-!      do i = 1,Size(matrix,1)
-!       write(*,1000) matrix(:,i)
-!      endDo
        
 !
 !
