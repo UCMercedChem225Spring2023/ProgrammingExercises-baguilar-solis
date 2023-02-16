@@ -43,7 +43,7 @@
       call PrintMatrix3x3(matrixInA)
       call PrintMatrix3x3(matrixInB)
 
-!     Compute and print product of matrices
+!     Compute and print matrix product
      
       matrixProduct = 0
 
@@ -55,10 +55,8 @@
         endDo
        endDo
       endDo
-        
-1000 format(3(2x,f5.1))
-      write(*,*) 'Printing matrix product'
-      write(*,1000) transpose(matrixProduct)
+     
+      call PrintMatrix3x3(transpose(matrixProduct))
 
   999 continue
       End Program prgm_01_03
