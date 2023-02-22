@@ -24,6 +24,7 @@
 !
 !     Read in m, l, n1, and n2 from the command line.
 !
+!      fail = .false.
       NCmdLineArgs = command_argument_count()
       if(NCmdLineArgs.ne.4) then
         write(*,9000) NCmdLineArgs
@@ -70,11 +71,11 @@
 !
       if(n1.eq.n2) then
 
-        ***WRITE CODE HERE***
+        PIB_1D_T_Element = (n1**2)/(2*l**2)
 
       else
 
-        ***WRITE CODE HERE***
+        PIB_1D_T_Element = 0
 
       endIf
 !
