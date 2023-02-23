@@ -47,7 +47,7 @@
 !     Given the input parameters, evaluate the potential energy integral between
 !     particle-in-a-box eigenfunctions n1 and n2.
 !
-      hMatrixElement = PIB_1D_Modified_Hamiltonian_Element(b,l,n1,n2)
+      hMatrixElement = PIB_1D_Modified_Hamiltonian_Element(m,b,l,n1,n2)
       write(*,2000) n1,n2,hMatrixElement
 !
 !     The end of the job...
@@ -56,7 +56,7 @@
       end program prgm_02_01
 
 
-      real function PIB_1D_Modified_Hamiltonian_Element(b,l,n1,n2)
+      real function PIB_1D_Modified_Hamiltonian_Element(m,b,l,n1,n2)
 !
 !     This function evaluates the Hamiltonian matrix element < n1 | H | n2 >,
 !     where n1 and n2 are particle-in-a-box eigenstate labels and H is
@@ -65,7 +65,7 @@
 !
 !     Variable Declarations
       implicit none
-      real,intent(in)::l,b
+      real,intent(in)::l,b,m
       integer,intent(in)::n1,n2
       real::prefactor
       real,parameter::pi=3.141593
@@ -75,14 +75,15 @@
 !     programs. These are called here. 
 
       PIB_1D_Modified_Hamiltonian_Element = &
-        PIB_1D_T_Element(l,n1,n2) + PIB_1D_Modified_V_Element(b,l,n1,n2)
+        PIB_1D_T_Element(m,l,n1,n2) +  &
+        PIB_1D_Modified_V_Element(b,l,n1,n2)
         
 !
       end function PIB_1D_Modified_Hamiltonian_Element
   
 !     Kinetic Energy function    
 !    
-      real function PIB_1D_T_Element(l,n1,n2)
+      real function PIB_1D_T_Element(m,l,n1,n2)
 !
 !     This function evaluates the kinetic energy matrix element < n1 | T
 !     | n2 >,
@@ -93,9 +94,10 @@
 !
 !     Variable Declarations
       implicit none
-      real,intent(in)::l
+      real,intent(in)::l,m
       integer,intent(in)::n1,n2
       real::prefactor
+      real,parameter::pi=3.141593
 !
 !     The case where n1=n2 is different than n1\=n2. For this reason, we
 !     use an
@@ -103,9 +105,11 @@
 !     for
 !     these two different cases.
 !
+      prefactor  = pi**2/m
+       
       if(n1.eq.n2) then
 
-        PIB_1D_T_Element = (n1**2)/(2*l**2)
+        PIB_1D_T_Element = prefactor*((n1**2)/(2*l**2))
 
       else
 
@@ -141,13 +145,13 @@
 !
       if(n1.eq.n2) then
 
-        PIB_1D_Modified_V_Element = (b*l/2) - (b*l/(2*n1**2*pi**2))
+        PIB_1D_Modified_V_Element = (b*l/2)
 
       else
 
-        PIB_1D_Modified_V_Element = (b*l/pi**2)*(((cos((n1-n2)*pi)-1) &
-                /(n1**2-2*n1*n2+n2**2)) - ((cos((n1+n2)*pi)+1) &
-                /(n1**2+2*n1*n2+n2**2)))
+        PIB_1D_Modified_V_Element = ((b*l)/(pi**2)) &
+            *(((cos((n1-n2)*pi)-1) /((n1-n2)**2)) &
+            - ((cos((n1+n2)*pi)-1) /((n1+n2)**2)))
 
       endIf
 !
