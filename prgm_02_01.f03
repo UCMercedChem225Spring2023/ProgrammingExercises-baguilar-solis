@@ -64,13 +64,14 @@
       real,intent(in)::l,m
       integer,intent(in)::n1,n2
       real::prefactor
-      real,parameter::pi=3.141593
+      real,parameter::pi=float(4)*atan(1.0)
 !
 !     The case where n1=n2 is different than n1\=n2. For this reason, we use an
 !     if block to separate the evaluation of the kinetic energy integral for
 !     these two different cases.
 !
 
+!      pi  =float(4)*atan(1.0)
       prefactor = pi**2/m
 
       if(n1.eq.n2) then
