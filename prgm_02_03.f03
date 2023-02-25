@@ -96,6 +96,10 @@
       real,intent(in)::l
       integer,intent(in)::n1,n2
       real::prefactor
+<<<<<<< HEAD
+      real,parameter::pi=float(4)*atan(1.0)
+=======
+>>>>>>> parent of 2674148... added updates to functions from prgm 1 and 2
 !
 !     The case where n1=n2 is different than n1\=n2. For this reason, we
 !     use an
@@ -131,7 +135,7 @@
       real,intent(in)::l,b
       integer,intent(in)::n1,n2
       real::prefactor
-      real,parameter::pi=3.141593
+      real,parameter::pi=float(4)*atan(1.0)
 !
 !     The case where n1=n2 is different than n1\=n2. For this reason, we
 !     use an
@@ -145,9 +149,13 @@
 
       else
 
+<<<<<<< HEAD
+        PIB_1D_Modified_V_Element = 0
+=======
         PIB_1D_Modified_V_Element = (b*l/pi**2)*(((cos((n1-n2)*pi)-1) &
                 /(n1**2-2*n1*n2+n2**2)) - ((cos((n1+n2)*pi)+1) &
                 /(n1**2+2*n1*n2+n2**2)))
+>>>>>>> parent of 2674148... added updates to functions from prgm 1 and 2
 
       endIf
 !

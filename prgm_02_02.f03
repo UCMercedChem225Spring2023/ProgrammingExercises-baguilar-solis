@@ -68,7 +68,7 @@
       real,intent(in)::l,b
       integer,intent(in)::n1,n2
       real::prefactor
-      real,parameter::pi=3.141593
+      real,parameter::pi=float(4)*atan(1.0)
 !
 !     The case where n1=n2 is different than n1\=n2. For this reason, we use an
 !     if block to separate the evaluation of the potential energy integral for
@@ -80,12 +80,7 @@
 
       else
 
-        PIB_1D_Modified_V_Element = ((b*l)/(pi**2)) &
-             *(((cos((n1-n2)*pi)-1) /((n1-n2)**2)) &
-             - ((cos((n1+n2)*pi)-1) /((n1+n2)**2)))
-
-!        write (*,*) ((cos((n1-n2)*pi)-1) /((n1-n2)**2))
-!        write (*,*) ((cos((n1+n2)*pi)-1) /((n1+n2)**2))
+        PIB_1D_Modified_V_Element = 0
 
       endIf
 !
