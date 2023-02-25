@@ -76,12 +76,16 @@
 !
       if(n1.eq.n2) then
 
-        PIB_1D_Modified_V_Element = (b*l/2)
+        PIB_1D_Modified_V_Element = (b*l/2) 
 
       else
 
-        PIB_1D_Modified_V_Element = 0
+        PIB_1D_Modified_V_Element = (b*l/pi**2) &
+              * ((cos((n1-n2)*pi)-1)/(n1-n2)**2 &
+              + (1-cos((n1+n2)*pi))/(n1+n2)**2)
 
+!        write(*,*) (cos((n1-n2)*pi)-1)/(n1-n2)**2
+!        write(*,*) (1-cos((n1+n2)*pi))/(n1+n2)**2
       endIf
 !
       end function PIB_1D_Modified_V_Element
