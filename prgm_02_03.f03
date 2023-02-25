@@ -148,8 +148,8 @@
       else
 
         PIB_1D_Modified_V_Element = (b*l/pi**2) &
-              * ((cos((n1-n2)*pi)-1)/(n1-n2)**2 &
-              + (1-cos((n1+n2)*pi))/(n1+n2)**2)
+              * (((cos((n1-n2)*pi)-1)/(n1-n2)**2) &
+              + ((1-cos((n1+n2)*pi))/(n1+n2)**2))
 
 !        write(*,*) (cos((n1-n2)*pi)-1)/(n1-n2)**2
 !        write(*,*) (1-cos((n1+n2)*pi))/(n1+n2)**2
