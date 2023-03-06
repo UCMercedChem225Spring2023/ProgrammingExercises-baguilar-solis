@@ -53,7 +53,12 @@
 !
       write(*,*)' Printing Matrix'
 !
-      ADD CODE HERE
+    
+      write(*,1000) matrix
+
+!     Check tranpose, should be column justified 
+!      write(*,1000) transpose(matrix)
+       
 !
 !
       return
