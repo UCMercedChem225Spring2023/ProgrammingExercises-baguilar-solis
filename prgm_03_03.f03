@@ -38,7 +38,7 @@
       do i = 1,NDim*((NDim+1))/2
         read(IIn,*) Array_Input(i)
 !        write(*,*) i
-!        write(*,*) Array_Input(i)
+        write(*,*) Array_Input(i)
       endDo
       close(IIn)
       Close(Unit=IIn)
