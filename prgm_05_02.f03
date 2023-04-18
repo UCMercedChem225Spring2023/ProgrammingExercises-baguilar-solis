@@ -3,10 +3,11 @@
 !     This program determines the eigenvalues and eigenfunctions for 
 !     the slanted PIB problem, with V(x) = bx. The basis set is given 
 !     by the 1D PIB eigenfucntions, psi = sin(n*pi*x/L). The number of
-!     basis functions will be given by the user, where this will
-!     represent the N lowest eigenfunctions. 
+!     basis functions  will be given by the user, where this will
+!     represent the N lowest eigenfunctions. The mass will also be given
+!     by the user.
 
-!     In this program m = L = hbar = 1
+!     In this program L = hbar = 1
 !
 !
 !     Variable Declarations
@@ -26,9 +27,8 @@
  9000 format(1x,'Expected 1 command line argument, but found ',i2,'.')
 !
 !
-!     Initialize mass (m), length (l), and b (V = bx)
+!     Initialize length (l), and b (V = bx)
 
-      m = 1
       l = 1
       b = 1
 !      b = 10
@@ -36,13 +36,15 @@
 !     Read in number of basis functions from the command line.
 !
       NCmdLineArgs = command_argument_count()
-      if(NCmdLineArgs.ne.1) then
+      if(NCmdLineArgs.ne.2) then
         write(*,9000) NCmdLineArgs
         fail = .true.
       endIf
       if(fail) goto 999
       call Get_Command_Argument(1,cmd_buffer)
       read(cmd_buffer,*) NBasis
+      call Get_Command_Argument(2,cmd_buffer)
+      read(cmd_buffer,*) m
 
 !     Allocate dimension of hMatrix
 
