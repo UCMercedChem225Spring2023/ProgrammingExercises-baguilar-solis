@@ -30,8 +30,8 @@
 
       m = 1
       l = 1
-      b = 1
-!      b = 10
+!      b = 1
+      b = 10
 
 !     Read in number of basis functions from the command line.
 !
@@ -97,10 +97,6 @@
 
       write(*,*) 'Evecs: '
       Call Print_Matrix_Full_Real(Evecs,NBasis,NBasis)
-
-!     Calculate wavefunction
-      
-      Call wavefunction(EVecs,NBasis,l)
 
   999 continue
       End Program prgm_05_01
@@ -253,47 +249,3 @@
       Return
       End Subroutine Print_Matrix_Full_Real
 
-      Subroutine wavefunction(evecs,NDim,l)
-
-!     This subroutine calculates the value of the wavefunction within
-!     the box with length l, via the linear combination of the 1D PIB
-!     wavefunctions.
-
-!     Variable Declarations
-      implicit none
-      integer,intent(in)::NDim
-      real,intent(in)::l
-      real,dimension(NDim,NDim),intent(in)::evecs
-
-!     Local Variables
-      real,parameter::pi=float(4)*atan(1.0)
-      real,dimension(NDim)::psi
-      integer::j,k
-      real::i,psi_dummy
-
-!     Intialize variables
-      i = 0
-!      j = 1
-      k = 1
-      psi_dummy = 0
-
-
-      do j = 1,NDim
-        psi_dummy = psi_dummy + evecs(j,1)*sin((j*pi*0.05)/l)
-!        write(*,*) evecs(j,1)
-      enddo
-
-
-
-!      do while (i <= l)
-!        do j = 1,NDim
-!          psi_dummy = psi_dummy +  evecs(j,1)*sin((j*pi*i)/l) 
-!        psi(k) = psi_dummy
-!        i = i + 0.05
-!        k = k + 1
-!        enddo
-!      enddo
-!      write(*,'(f14.6)') psi_dummy
-
-
-      end Subroutine wavefunction 
