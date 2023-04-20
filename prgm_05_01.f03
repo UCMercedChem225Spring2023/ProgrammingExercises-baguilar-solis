@@ -30,8 +30,8 @@
 
       m = 1
       l = 1
-!      b = 1
-      b = 10
+      b = 1
+!      b = 10
 
 !     Read in number of basis functions from the command line.
 !
@@ -60,7 +60,7 @@
 
 !      write(*,*) 'Full H Matrix: '
 !      write(*,'(f5.1)') hMatrix
-
+!      Call Print_Matrix_Full_Real(hMatrix,NBasis,NBasis)
 !     Form packed form of hMatrix 
 
       Allocate(packed_hMatrix((NBasis*(NBasis+1))/2))
@@ -74,6 +74,7 @@
         endDo
       endDo
 
+!      write(*,*) packed_hmatrix
 !     Allocate dimesions to evecs, evals, and temp_vec
 
       Allocate(EVals(NBasis),EVecs(NBasis,NBasis),&
